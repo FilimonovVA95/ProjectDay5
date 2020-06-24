@@ -18,22 +18,22 @@ public class Main {
         WebDriver driver = new ChromeDriver();
         driver.get(testURL);
 
-        if (driver.findElement((By.xpath("//a[@id='header-lk-button']"))).isDisplayed())
-            driver.findElement((By.xpath("//a[@id='header-lk-button']"))).click();
+        if (driver.findElement((By.id("header-lk-button"))).isDisplayed())
+            driver.findElement((By.id("header-lk-button"))).click();
         else
-            driver.findElement((By.xpath("//img[@id='mobileAvatar']"))).click();
+            driver.findElement((By.id("mobileAvatar"))).click();
 
         new WebDriverWait(driver, timeWait).until(ExpectedConditions.
                 presenceOfElementLocated(By.xpath("//div[@class='modal-body newprice-modal ng-scope']")));
 
-        driver.findElement(By.xpath("//input[@id='login']")).sendKeys(loginName);
-        driver.findElement(By.xpath("//input[@name='password']")).sendKeys(loginPassword);
+        driver.findElement(By.name("login")).sendKeys(loginName);
+        driver.findElement(By.name("password")).sendKeys(loginPassword);
         driver.findElement((By.xpath("//form[@id='form_auth']//button[@class='lk-enter-btn']"))).click();
 
         new WebDriverWait(driver, timeWait).withMessage("Log in exception")
-                .until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@id='logout']")));
+                .until(ExpectedConditions.presenceOfElementLocated(By.id("logout")));
 
-        driver.findElement((By.xpath("//a[@id='logout']"))).click();
+        driver.findElement((By.id("logout"))).click();
 
         driver.quit();
     }
